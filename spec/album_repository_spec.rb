@@ -68,4 +68,34 @@ RSpec.describe AlbumRepository do
         artist_id: album.artist_id)
       )
   end
+
+  it "deletes an album with id 1" do
+    repo = AlbumRepository.new
+
+    id = 1
+
+    repo.delete(id)
+
+    albums = repo.all
+    expect(albums.length).to eq 3
+    expect(albums.first.id).to eq '2'
+  end
+
+  it "update an album with new values" do
+    repo = AlbumRepository.new
+
+    album = repo.find(1)
+
+    album.title = 'Something New'
+    album.release_year = '2023'
+    album.artist_id = '6'
+
+    repo.update(album)
+
+    updated_album = repo.find(1)
+
+    expect(updated_album.title).to eq 'Something New'
+    expect(updated_album.release_year).to eq '2023'
+    expect(updated_album.artist_id).to eq '6'
+  end
 end

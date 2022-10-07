@@ -51,9 +51,17 @@ class AlbumRepository
     DatabaseConnection.exec_params(sql, sql_params)
   end
 
-  # def update(student)
-  # end
+  def update(album)
+    sql = 'UPDATE albums SET title = $1, release_year = $2, artist_id = $3 WHERE id = $4;'
+    sql_params = [album.title, album.release_year, album.artist_id, album.id]
 
-  # def delete(student)
-  # end
+    DatabaseConnection.exec_params(sql, sql_params)
+  end
+
+  def delete(id)
+    sql = 'DELETE FROM albums WHERE id = $1;'
+    sql_params = [id]
+
+    DatabaseConnection.exec_params(sql, sql_params)
+  end
 end
