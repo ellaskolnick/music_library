@@ -13,7 +13,7 @@ RSpec.describe Application do
     artist3 = double(:artist, name: "Taylor Swift")
     artists = [artist, artist2, artist3]
     artist_repository = double(:artist_repository, all: artists)
-    app = Application.new('music_library_test', Kernel, album_repository, artist_repository)
+    app = Application.new('music_library_test', io, album_repository, artist_repository)
     expect(io).to receive(:puts).with("Welcome to the music library manager!")
     expect(io).to receive(:puts).with("What would you like to do?")
     expect(io).to receive(:puts).with(" 1 - List all albums")
